@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafetyNet NYC — Portfolio Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Reset & Base ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:      #F4EDD8;
+      --cream-mid:  #EDE4CA;
+      --cream-dark: #E4D9BB;
+      --ink:        #1A1A17;
+      --ink-light:  #5A5548;
+      --olive:      #6E7D4E;
+      --olive-light:#8E9E67;
+      --rust:       #C4622D;
+      --rust-light: #D97840;
+      --serif:      'Playfair Display', Georgia, serif;
+      --sans:       'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --max:        1200px;
+      --pad:        clamp(1.5rem, 5vw, 5rem);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; height: auto; }
+
+    /* ─── Nav ────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.1rem var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(244, 237, 216, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(110, 125, 78, 0.18);
+      transition: background 0.3s;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.73rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--rust); }
+
+    /* ─── Typography ─────────────────────────────────────────── */
+    .section-label {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-label::after {
+      content: '';
+      display: inline-block;
+      width: 2rem;
+      height: 1px;
+      background: var(--olive);
+      flex-shrink: 0;
+    }
+
+    h1 { font-family: var(--serif); font-size: clamp(3.5rem, 8vw, 7rem); line-height: 1.0; font-weight: 700; letter-spacing: -0.02em; }
+    h2 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; font-weight: 600; letter-spacing: -0.01em; }
+    h3 { font-family: var(--serif); font-size: clamp(1.3rem, 2.5vw, 1.8rem); line-height: 1.2; font-weight: 600; }
+    h4 { font-family: var(--sans); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--olive); margin-bottom: 0.5rem; }
+
+    p { font-size: clamp(0.95rem, 1.5vw, 1.05rem); line-height: 1.75; color: var(--ink-light); }
+    p strong { color: var(--ink); font-weight: 600; }
+
+    /* ─── Layout Utilities ───────────────────────────────────── */
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+
+    section { position: relative; }
+
+    .section-inner {
+      padding: clamp(5rem, 10vw, 9rem) var(--pad);
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    /* ─── Hero ───────────────────────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem var(--pad) 6rem;
+      background: var(--cream);
+      overflow: hidden;
+    }
+
+    .hero-logo {
+      width: clamp(80px, 14vw, 140px);
+      margin: 0 auto 2.5rem;
+      opacity: 0.92;
+      mix-blend-mode: multiply;
+    }
+
+    .hero-title {
+      font-size: clamp(5rem, 14vw, 11rem);
+      line-height: 0.92;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      line-height: 1.5;
+      max-width: 600px;
+      color: var(--ink-light);
+      margin: 0 auto 2.8rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 2rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--olive);
+    }
+
+    .hero-meta span { display: flex; align-items: center; gap: 0.5rem; }
+    .hero-meta span::before { content: '·'; opacity: 0.4; }
+    .hero-meta span:first-child::before { display: none; }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      opacity: 0.5;
+      animation: bobUp 2.4s ease-in-out infinite;
+    }
+
+    .scroll-hint svg { width: 16px; height: 16px; }
+
+    @keyframes bobUp {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ─── Context ────────────────────────────────────────────── */
+    #context { background: var(--cream); border-top: 1px solid var(--cream-dark); }
+
+    .context-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .context-text h2 { margin-bottom: 1.5rem; }
+    .context-text p { margin-bottom: 1rem; }
+
+    .context-illustration {
+      position: relative;
+    }
+
+    .context-illustration img {
+      width: 100%;
+      border-radius: 4px;
+    }
+
+    .context-caption {
+      position: absolute;
+      bottom: -1.2rem;
+      right: 0;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-light);
+      font-style: italic;
+    }
+
+    .pull-stat {
+      margin-top: 3.5rem;
+      padding: 2.5rem;
+      background: var(--cream-dark);
+      border-left: 3px solid var(--rust);
+      border-radius: 2px;
+    }
+
+    .pull-stat p {
+      font-family: var(--serif);
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      line-height: 1.5;
+      color: var(--ink);
+      font-style: italic;
+    }
+
+    .pull-stat cite {
+      display: block;
+      margin-top: 0.8rem;
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--olive);
+      font-style: normal;
+    }
+
+    /* ─── Key Insight (dark) ─────────────────────────────────── */
+    #insight {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    #insight .section-label { color: var(--olive-light); }
+    #insight .section-label::after { background: var(--olive-light); }
+
+    .insight-inner {
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .insight-quote {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.25;
+      font-style: italic;
+      color: var(--cream);
+      margin-bottom: 2rem;
+    }
+
+    .insight-quote em { color: var(--rust-light); font-style: normal; }
+
+    .insight-attr {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--olive-light);
+      margin-bottom: 3.5rem;
+    }
+
+    .insight-thesis {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      line-height: 1.7;
+      color: rgba(244, 237, 216, 0.7);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ─── Users ──────────────────────────────────────────────── */
+    #users { background: var(--cream-mid); }
+
+    .users-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 3rem;
+      border: 2px solid var(--cream-dark);
+    }
+
+    .user-card {
+      padding: 2.5rem 2rem;
+      background: var(--cream);
+    }
+
+    .user-card:nth-child(2) { border-left: 2px solid var(--cream-dark); border-right: 2px solid var(--cream-dark); }
+
+    .user-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.3rem;
+      overflow: hidden;
+    }
+
+    .user-icon img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+
+    .user-card h3 { font-size: 1.25rem; margin-bottom: 0.8rem; }
+    .user-card p { font-size: 0.9rem; line-height: 1.65; }
+
+    .user-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rust);
+      border: 1px solid var(--rust);
+      padding: 0.25rem 0.6rem;
+      border-radius: 2px;
+    }
+
+    /* ─── Solution ───────────────────────────────────────────── */
+    #solution { background: var(--cream); }
+
+    .solution-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: end;
+      margin-bottom: 5rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .solution-header h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+
+    .solution-statement {
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+      line-height: 1.75;
+      color: var(--ink-light);
+    }
+
+    .steps-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .step-card {
+      padding: 2.5rem 2rem 2.5rem;
+      background: var(--cream-mid);
+      border-top: 3px solid var(--olive);
+    }
+
+    .step-num {
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--cream-dark);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .step-card h3 { font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--ink); }
+    .step-card p { font-size: 0.9rem; line-height: 1.65; }
+
+    /* ─── How It Works ───────────────────────────────────────── */
+    #howitworks { background: var(--ink); color: var(--cream); }
+
+    #howitworks .section-label { color: var(--olive-light); }
+    #howitworks .section-label::after { background: var(--olive-light); }
+    #howitworks h2 { color: var(--cream); margin-bottom: 3.5rem; }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .works-step {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid rgba(244, 237, 216, 0.1);
+    }
+
+    .works-step:last-child { border-right: none; }
+
+    .works-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--rust-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .works-step h3 {
+      font-size: 1.8rem;
+      color: var(--cream);
+      margin-bottom: 1.2rem;
+    }
+
+    .works-step p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: rgba(244, 237, 216, 0.6);
+    }
+
+    .works-detail {
+      margin-top: 1.2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(244, 237, 216, 0.1);
+      font-size: 0.82rem;
+      color: rgba(244, 237, 216, 0.4);
+      line-height: 1.6;
+    }
+
+    /* ─── Online / Offline ───────────────────────────────────── */
+    #onlineoffline { background: var(--cream-mid); }
+
+    .oo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+
+    .oo-col { }
+
+    .oo-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 2px solid var(--cream-dark);
+    }
+
+    .oo-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+    }
+
+    .oo-badge.online  { background: var(--olive); color: #fff; }
+    .oo-badge.offline { background: var(--rust);  color: #fff; }
+
+    .oo-header h3 { font-size: 1.4rem; }
+
+    .oo-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .oo-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .oo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--olive);
+      flex-shrink: 0;
+      margin-top: 0.45rem;
+    }
+
+    .oo-item.offline .oo-dot { background: var(--rust); }
+
+    .oo-item p {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .oo-item p strong { font-weight: 600; color: var(--ink); display: block; font-size: 0.82rem; letter-spacing: 0.05em; }
+
+    .oo-image {
+      margin-top: 2.5rem;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* ─── Ecosystem ──────────────────────────────────────────── */
+    #ecosystem { background: var(--ink); }
+
+    #ecosystem .section-label { color: var(--olive-light); }
+    #ecosystem .section-label::after { background: var(--olive-light); }
+    #ecosystem h2 { color: var(--cream); margin-bottom: 3.5rem; }
+
+    .ecosystem-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .eco-col {
+      padding: 3rem 2.5rem;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .eco-col.after {
+      background: rgba(110, 125, 78, 0.12);
+    }
+
+    .eco-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .eco-col:not(.after) .eco-label { color: var(--rust-light); }
+    .eco-col.after .eco-label { color: var(--olive-light); }
+
+    .eco-col h3 {
+      font-size: 1.4rem;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+
+    .eco-col img {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .eco-col ul {
+      list-style: none;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .eco-col li {
+      font-size: 0.88rem;
+      color: rgba(244, 237, 216, 0.55);
+      padding-left: 1.2rem;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .eco-col li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--rust-light);
+    }
+
+    .eco-col.after li::before { color: var(--olive-light); }
+    .eco-col.after li { color: rgba(244, 237, 216, 0.75); }
+
+    /* ─── Competitor ─────────────────────────────────────────── */
+    #competitor { background: var(--cream-mid); }
+
+    .comp-table-wrap {
+      margin-top: 3rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    thead th {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      padding: 0.8rem 1.2rem;
+      text-align: left;
+      border-bottom: 2px solid var(--cream-dark);
+    }
+
+    thead th:first-child { color: var(--ink); font-size: 0.72rem; }
+
+    thead th.ours {
+      color: var(--ink);
+      background: var(--cream);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+
+    tbody td {
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid var(--cream-dark);
+      vertical-align: middle;
+      color: var(--ink-light);
+      font-size: 0.9rem;
+    }
+
+    tbody td:first-child {
+      font-weight: 500;
+      color: var(--ink);
+      font-size: 0.88rem;
+    }
+
+    tbody td.ours {
+      background: var(--cream);
+      font-weight: 600;
+      color: var(--olive);
+    }
+
+    .check    { color: var(--olive); font-size: 1.1rem; }
+    .partial  { color: var(--rust-light); font-size: 0.9rem; }
+    .cross    { color: rgba(90, 85, 72, 0.3); font-size: 1.1rem; }
+
+    .comp-diff {
+      margin-top: 2.5rem;
+      padding: 1.8rem 2.2rem;
+      background: var(--ink);
+      color: var(--cream);
+      border-radius: 2px;
+    }
+
+    .comp-diff p {
+      font-size: 1.05rem;
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.6;
+    }
+
+    .comp-diff strong { color: var(--rust-light); font-style: normal; }
+
+    /* ─── Prototype ──────────────────────────────────────────── */
+    #prototype { background: var(--cream); }
+
+    .proto-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-top: 3rem;
+      align-items: start;
+    }
+
+    .proto-item {}
+
+    .proto-phone {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(26, 26, 23, 0.18), 0 4px 16px rgba(26, 26, 23, 0.08);
+      background: #fff;
+    }
+
+    .proto-phone img {
+      width: 100%;
+      display: block;
+    }
+
+    .proto-caption {
+      margin-top: 1.2rem;
+      padding-left: 0.3rem;
+    }
+
+    .proto-caption h4 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 0.3rem;
+    }
+
+    .proto-caption p {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--ink-light);
+    }
+
+    /* ─── Fairness ───────────────────────────────────────────── */
+    #fairness { background: var(--ink); }
+
+    #fairness .section-label { color: var(--olive-light); }
+    #fairness .section-label::after { background: var(--olive-light); }
+    #fairness h2 { color: var(--cream); margin-bottom: 3.5rem; }
+
+    .fairness-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+
+    .fair-card {
+      padding: 3rem 2.5rem;
+      background: rgba(255,255,255,0.03);
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .fair-icon {
+      width: 64px;
+      height: 64px;
+      flex-shrink: 0;
+    }
+
+    .fair-icon img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+    }
+
+    .fair-text h3 {
+      font-size: 1.25rem;
+      color: var(--cream);
+      margin-bottom: 0.6rem;
+    }
+
+    .fair-text p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: rgba(244, 237, 216, 0.55);
+    }
+
+    .fair-sub {
+      display: block;
+      margin-top: 0.6rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      font-style: italic;
+      color: rgba(244, 237, 216, 0.3);
+    }
+
+    /* ─── Reflection ─────────────────────────────────────────── */
+    #reflection { background: var(--cream-mid); }
+
+    .reflection-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .reflection-left h2 { margin-bottom: 1.5rem; }
+    .reflection-left p { font-size: 0.95rem; line-height: 1.75; }
+
+    .reflection-right {}
+
+    .reflection-item {
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--cream-dark);
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 1.2rem;
+      align-items: start;
+    }
+
+    .reflection-item:first-child { border-top: 1px solid var(--cream-dark); }
+
+    .reflection-item .num {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--cream-dark);
+      line-height: 1.3;
+    }
+
+    .reflection-item h4 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .reflection-item p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--ink-light);
+    }
+
+    /* ─── Closing CTA ────────────────────────────────────────── */
+    #closing {
+      background: var(--ink);
+      text-align: center;
+      padding: clamp(5rem, 10vw, 9rem) var(--pad);
+    }
+
+    #closing .section-label {
+      justify-content: center;
+      color: var(--olive-light);
+    }
+    #closing .section-label::after,
+    #closing .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 2rem;
+      height: 1px;
+      background: var(--olive-light);
+      opacity: 0.5;
+    }
+
+    .closing-quote {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      max-width: 800px;
+      margin: 1.5rem auto 3rem;
+    }
+
+    .closing-quote em { color: var(--rust-light); font-style: normal; }
+
+    .closing-team {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(244, 237, 216, 0.35);
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(244, 237, 216, 0.06);
+      padding: 2rem var(--pad);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 0.72rem;
+      color: rgba(244, 237, 216, 0.25);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── Mobile Nav Hamburger ───────────────────────────────── */
+    .nav-toggle { display: none; }
+
+    /* ─── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .context-grid      { grid-template-columns: 1fr; gap: 3rem; }
+      .users-grid        { grid-template-columns: 1fr; }
+      .user-card:nth-child(2) { border-left: none; border-right: none; border-top: 2px solid var(--cream-dark); border-bottom: 2px solid var(--cream-dark); }
+      .steps-row         { grid-template-columns: 1fr; }
+      .works-grid        { grid-template-columns: 1fr; }
+      .works-step        { border-right: none; border-bottom: 1px solid rgba(244, 237, 216, 0.1); }
+      .works-step:last-child { border-bottom: none; }
+      .oo-grid           { grid-template-columns: 1fr; }
+      .ecosystem-cols    { grid-template-columns: 1fr; }
+      .proto-grid        { grid-template-columns: 1fr; max-width: 340px; margin-left: auto; margin-right: auto; }
+      .fairness-grid     { grid-template-columns: 1fr; }
+      .reflection-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .solution-header   { grid-template-columns: 1fr; gap: 1.5rem; }
+      footer             { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 4px;
+      }
+      .nav-toggle span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--ink);
+        border-radius: 2px;
+        transition: transform 0.2s, opacity 0.2s;
+      }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 56px; left: 0; right: 0;
+        background: var(--cream);
+        padding: 1.5rem var(--pad);
+        gap: 1.2rem;
+        border-bottom: 1px solid var(--cream-dark);
+        z-index: 99;
+      }
+      .fair-card { flex-direction: column; gap: 1.2rem; }
+    }
+
+    /* ─── Scroll Animations ──────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV ─────────────────────────────────────────────────────── -->
+  <nav id="main-nav">
+    <a href="#hero" class="nav-logo">SafetyNet NYC</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#context"     onclick="closeNav()">Context</a></li>
+      <li><a href="#users"       onclick="closeNav()">Users</a></li>
+      <li><a href="#solution"    onclick="closeNav()">Solution</a></li>
+      <li><a href="#prototype"   onclick="closeNav()">Prototype</a></li>
+      <li><a href="#reflection"  onclick="closeNav()">Reflection</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+
+  <!-- HERO ────────────────────────────────────────────────────── -->
+  <section id="hero">
+    <img class="hero-logo" src="assets/p8_Image20.jpg" alt="SafetyNet logo">
+
+    <h1 class="hero-title">SafetyNet</h1>
+
+    <p class="hero-tagline">
+      Formalizing New York City's existing disaster communication network —
+      the bodega, the halal cart, the doorman.
+    </p>
+
+    <div class="hero-meta">
+      <span>Human-Centered Design</span>
+      <span>Columbia GSAPP</span>
+      <span>Team 14</span>
+      <span>Emergency Communication</span>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M8 3v10M4 9l4 4 4-4"/>
+      </svg>
+      Scroll
+    </div>
+  </section>
+
+
+  <!-- CONTEXT / PROBLEM ───────────────────────────────────────── -->
+  <section id="context">
+    <div class="section-inner">
+      <div class="section-label reveal">01 Context</div>
+      <div class="context-grid">
+
+        <div class="context-text reveal">
+          <h2>When centralized systems fail, communities turn to what's closest.</h2>
+          <p>Emergency communication in NYC relies on centralized infrastructure — alerts, apps, broadcasts. But these systems assume stable signal, consistent digital access, and a common language. During a crisis, they often break down exactly when they're needed most.</p>
+          <p>Meanwhile, an informal system already exists and quietly functions. <strong>Bodegas stay open through storms. Halal cart operators know their block. Doormen have residents' trust built over years.</strong> New Yorkers have always known who to turn to — they just haven't had a way to find them during a disaster.</p>
+
+          <div class="pull-stat reveal">
+            <p>"There is information, but it's not reliable or clear enough to act on."</p>
+            <cite>— Patrick, Queens resident, interviewed during research</cite>
+          </div>
+        </div>
+
+        <div class="context-illustration reveal">
+          <img src="assets/p8_Image19.jpg" alt="NYC Deli and Grocery storefront illustration">
+          <span class="context-caption">The unofficial anchor of NYC neighborhood life</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- KEY INSIGHT ─────────────────────────────────────────────── -->
+  <section id="insight">
+    <div class="section-inner">
+      <div class="section-label reveal">02 Key Insight</div>
+      <div class="insight-inner">
+        <p class="insight-quote reveal">
+          "I love my customers. I want to protect them — and I appreciate being someone
+          <em>they can turn to during danger.</em>"
+        </p>
+        <p class="insight-attr reveal">Kareem, Owner — Hooda Halal, W 115th St &amp; Broadway</p>
+
+        <p class="insight-thesis reveal">
+          The informal trust network already exists across every NYC neighborhood. Our research confirmed that local vendors, shop owners, and building staff naturally step into supportive roles during emergencies — across languages, backgrounds, and income levels. The gap isn't motivation. It's structure, visibility, and connection to official information.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- USERS & STAKEHOLDERS ────────────────────────────────────── -->
+  <section id="users">
+    <div class="section-inner">
+      <div class="section-label reveal">03 Users &amp; Stakeholders</div>
+      <h2 class="reveal">Who this is for — and who makes it work.</h2>
+
+      <div class="users-grid reveal">
+
+        <div class="user-card">
+          <div class="user-icon">
+            <img src="assets/p5_Image13.jpg" alt="Resident icon">
+          </div>
+          <h4>Primary Users</h4>
+          <h3>Residents &amp; Newcomers</h3>
+          <p>Students, tourists, and recent arrivals who lack local knowledge and trusted networks during emergencies. Surveyed across 12 newcomers — they consistently reported not knowing where to go or who to trust during a crisis.</p>
+          <span class="user-tag">Primary</span>
+        </div>
+
+        <div class="user-card">
+          <div class="user-icon">
+            <img src="assets/p5_Image14.jpg" alt="Hub operator icon">
+          </div>
+          <h4>Hub Operators</h4>
+          <h3>Bodegas, Food Carts &amp; Doormen</h3>
+          <p>Community-trusted individuals who already serve as informal safety points across languages and backgrounds. Often remain open during disasters. Motivated by community relationships and eligible for recognition and permit benefits through the program.</p>
+          <span class="user-tag">Stakeholder</span>
+        </div>
+
+        <div class="user-card">
+          <div class="user-icon">
+            <img src="assets/p5_Image15.jpg" alt="City institution icon">
+          </div>
+          <h4>Institutional Partners</h4>
+          <h3>City &amp; Agencies</h3>
+          <p>NYC Mayor's Office, NYC Emergency Management (NYCEM), and First Responders. The city gains a scalable, decentralized communication layer and real-time ground-level intelligence — without building new infrastructure.</p>
+          <span class="user-tag">Partner</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SOLUTION ────────────────────────────────────────────────── -->
+  <section id="solution">
+    <div class="section-inner">
+      <div class="solution-header reveal">
+        <div>
+          <div class="section-label">04 Solution</div>
+          <h2>A distributed network of everyday trust.</h2>
+        </div>
+        <p class="solution-statement">SafetyNet formalizes what already exists: a citywide network of vetted local establishments — bodegas, halal carts, coffee shops, doormen — that act as verified emergency communication hubs. Marked with visible signage, mapped digitally, and connected to city information systems.</p>
+      </div>
+
+      <div class="steps-row reveal">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h3>Find</h3>
+          <p>Locate the nearest SafetyNet hub via the app map, a Google Maps layer, or a physical sticker on the storefront — no stable signal required to recognize it in person.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h3>Access</h3>
+          <p>Receive emergency information packets, verbal guidance from trusted vendors, and backup communication — in your language, from a familiar face.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h3>Feedback</h3>
+          <p>Hub operators share real-time local conditions — blocked streets, supply gaps, unmet needs — flowing bottom-up back into city systems for faster, more accurate response.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- HOW IT WORKS ────────────────────────────────────────────── -->
+  <section id="howitworks">
+    <div class="section-inner">
+      <div class="section-label reveal">05 How It Works</div>
+      <h2 class="reveal">Three-way information flow.</h2>
+
+      <div class="works-grid reveal">
+
+        <div class="works-step">
+          <div class="works-num">CITY → HUBS → RESIDENTS</div>
+          <h3>Top-Down</h3>
+          <p>NYC Emergency Management sends verified, neighborhood-specific alerts and updates to hub operators. Hubs distribute city-issued emergency packets and provide on-the-ground guidance.</p>
+          <p class="works-detail">Pre-disaster: NYCEM supplies printed protocols, resource packets, and basic supplies to all vetted hubs.</p>
+        </div>
+
+        <div class="works-step">
+          <div class="works-num">RESIDENTS → HUBS → CITY</div>
+          <h3>Bottom-Up</h3>
+          <p>Hub operators observe local conditions and report unmet needs — supply shortages, blocked routes, unreachable populations — back to the city through the app or paper logs.</p>
+          <p class="works-detail">Post-disaster: Reports from hubs identify underserved areas and inform future emergency planning.</p>
+        </div>
+
+        <div class="works-step">
+          <div class="works-num">PHYSICAL + DIGITAL</div>
+          <h3>Redundant</h3>
+          <p>The system works online through the app and offline through physical signs and emergency packets. Satellite phones enable hub reporting even when cell towers are down.</p>
+          <p class="works-detail">Designed for iOS 16.1+ satellite messaging and paper log backups when all digital channels fail.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ONLINE + OFFLINE ────────────────────────────────────────── -->
+  <section id="onlineoffline">
+    <div class="section-inner">
+      <div class="section-label reveal">06 Online + Offline Experience</div>
+      <h2 class="reveal">Built for the moments when connectivity fails.</h2>
+
+      <div class="oo-grid reveal">
+
+        <div class="oo-col">
+          <div class="oo-header">
+            <span class="oo-badge online">Online</span>
+            <h3>Digital Experience</h3>
+          </div>
+          <div class="oo-row">
+            <div class="oo-item">
+              <div class="oo-dot"></div>
+              <p><strong>City → Hubs → Residents</strong>Verified alerts sent through the SafetyNet app with neighborhood-specific updates.</p>
+            </div>
+            <div class="oo-item">
+              <div class="oo-dot"></div>
+              <p><strong>Map &amp; Hub Finder</strong>Real-time map showing nearest open hubs with directions and status.</p>
+            </div>
+            <div class="oo-item">
+              <div class="oo-dot"></div>
+              <p><strong>Community Feed</strong>Two-way feed where hubs post conditions and residents see verified updates from hubs and city agencies.</p>
+            </div>
+            <div class="oo-item">
+              <div class="oo-dot"></div>
+              <p><strong>Hub Reporting</strong>Operators submit local need reports directly into city emergency systems.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="oo-col">
+          <div class="oo-header">
+            <span class="oo-badge offline">Offline</span>
+            <h3>Physical Experience</h3>
+          </div>
+          <div class="oo-row">
+            <div class="oo-item offline">
+              <div class="oo-dot"></div>
+              <p><strong>Storefront Signage</strong>SafetyNet stickers on storefronts are recognizable without any app or signal — just walk to the sign.</p>
+            </div>
+            <div class="oo-item offline">
+              <div class="oo-dot"></div>
+              <p><strong>Emergency Packets</strong>Pre-positioned printed protocols and resource packets distributed by hubs when digital systems fail.</p>
+            </div>
+            <div class="oo-item offline">
+              <div class="oo-dot"></div>
+              <p><strong>Satellite &amp; SMS</strong>Hub operators use satellite phones (iOS 16.1+) or paper logs to submit reports without internet access.</p>
+            </div>
+            <div class="oo-item offline">
+              <div class="oo-dot"></div>
+              <p><strong>Existing Channels</strong>City communication continues through established emergency channels as a parallel fallback.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ECOSYSTEM ───────────────────────────────────────────────── -->
+  <section id="ecosystem">
+    <div class="section-inner">
+      <div class="section-label reveal">07 System Ecosystem</div>
+      <h2 class="reveal">Before &amp; After SafetyNet.</h2>
+
+      <div class="ecosystem-cols reveal">
+
+        <div class="eco-col">
+          <div class="eco-label">Before</div>
+          <h3>Fragmented, invisible system</h3>
+          <img src="assets/p9_Image11.jpg" alt="Before: fragmented, scattered informal network">
+          <ul>
+            <li>Informal trust networks exist but are unstructured</li>
+            <li>Newcomers don't know who to turn to</li>
+            <li>Official messaging misses communities with language barriers</li>
+            <li>City has no ground-level feedback during disasters</li>
+            <li>Hubs operate in isolation without city connection</li>
+          </ul>
+        </div>
+
+        <div class="eco-col after">
+          <div class="eco-label">After</div>
+          <h3>Connected, distributed network</h3>
+          <img src="assets/p9_Image23.jpg" alt="After: connected, verified hub network">
+          <ul>
+            <li>Vetted hubs are visible on-map and in-person</li>
+            <li>Newcomers can find trusted help within 0.2 miles</li>
+            <li>Multi-language guidance from familiar neighborhood faces</li>
+            <li>Real-time bottom-up intelligence feeds city systems</li>
+            <li>City, hubs, and residents in continuous two-way communication</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- COMPETITOR ──────────────────────────────────────────────── -->
+  <section id="competitor">
+    <div class="section-inner">
+      <div class="section-label reveal">08 Competitive Landscape</div>
+      <h2 class="reveal">Why SafetyNet is different.</h2>
+
+      <div class="comp-table-wrap reveal">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="ours">SafetyNet</th>
+              <th>Citizen</th>
+              <th>NYC Notify</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Real-time alerts</td>
+              <td class="ours"><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Hyperlocal information</td>
+              <td class="ours"><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="cross">—</span></td>
+            </tr>
+            <tr>
+              <td>Verified community sources</td>
+              <td class="ours"><span class="check">✓</span></td>
+              <td><span class="cross">—</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Two-way communication</td>
+              <td class="ours"><span class="check">✓</span></td>
+              <td><span class="partial">~ Limited</span></td>
+              <td><span class="cross">—</span></td>
+            </tr>
+            <tr>
+              <td>Physical safety locations</td>
+              <td class="ours"><span class="check">✓</span></td>
+              <td><span class="cross">—</span></td>
+              <td><span class="cross">—</span></td>
+            </tr>
+            <tr>
+              <td>Works offline</td>
+              <td class="ours"><span class="check">✓</span></td>
+              <td><span class="cross">—</span></td>
+              <td><span class="cross">—</span></td>
+            </tr>
+            <tr>
+              <td>Multi-language support</td>
+              <td class="ours"><span class="check">✓</span></td>
+              <td><span class="cross">—</span></td>
+              <td><span class="partial">~ Partial</span></td>
+            </tr>
+            <tr>
+              <td>Government integration</td>
+              <td class="ours"><span class="check">✓</span></td>
+              <td><span class="cross">—</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="comp-diff reveal">
+        <p>We turn everyday NYC locations into <strong>verified safety hubs</strong>. No other platform combines physical presence, multi-language trust, two-way communication, and government integration — without requiring stable internet access.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- PROTOTYPE ───────────────────────────────────────────────── -->
+  <section id="prototype">
+    <div class="section-inner">
+      <div class="section-label reveal">09 Prototype</div>
+      <h2 class="reveal">The app in action.</h2>
+
+      <div class="proto-grid reveal">
+
+        <div class="proto-item">
+          <div class="proto-phone">
+            <img src="assets/p13_Image30.jpg" alt="SafetyNet app: Map view showing nearest safe hub">
+          </div>
+          <div class="proto-caption">
+            <h4>01 — Find</h4>
+            <p>Map view surfaces nearest verified hubs with live status. City alert banners appear at the top during active emergencies.</p>
+          </div>
+        </div>
+
+        <div class="proto-item">
+          <div class="proto-phone">
+            <img src="assets/p13_Image31.jpg" alt="SafetyNet app: Walking directions to hub">
+          </div>
+          <div class="proto-caption">
+            <h4>02 — Access</h4>
+            <p>One tap to walking directions. Hub info — name, distance, open status — confirmed before you leave. Open in Maps for offline navigation.</p>
+          </div>
+        </div>
+
+        <div class="proto-item">
+          <div class="proto-phone">
+            <img src="assets/p13_Image32.jpg" alt="SafetyNet app: Community feed showing updates from hubs and city agencies">
+          </div>
+          <div class="proto-caption">
+            <h4>03 — Feedback</h4>
+            <p>Community feed shows real-time updates from city agencies, hub operators, and local buildings — all in one verified, timestamped stream.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FAIRNESS & ACCOUNTABILITY ───────────────────────────────── -->
+  <section id="fairness">
+    <div class="section-inner">
+      <div class="section-label reveal">10 Fairness &amp; Accountability</div>
+      <h2 class="reveal">How the system delivers equitably.</h2>
+
+      <div class="fairness-grid reveal">
+
+        <div class="fair-card">
+          <div class="fair-icon">
+            <img src="assets/p11_Image26.jpg" alt="Access icon: phone, store, monitor">
+          </div>
+          <div class="fair-text">
+            <h3>Access</h3>
+            <p>Hubs are findable through the app map <em>and</em> through physical storefront signs — no stable signal, battery, or app required to reach help.</p>
+            <span class="fair-sub">Digital access + physical access, both pathways considered</span>
+          </div>
+        </div>
+
+        <div class="fair-card">
+          <div class="fair-icon">
+            <img src="assets/p11_Image27.jpg" alt="Language icon: globe with language characters">
+          </div>
+          <div class="fair-text">
+            <h3>Language + Culture</h3>
+            <p>Hubs reflect the languages and cultures of their neighborhoods. Guidance arrives in familiar, everyday language from a known face — serving newcomers, immigrants, and non-English speakers.</p>
+            <span class="fair-sub">Culturally familiar communication without translation barriers</span>
+          </div>
+        </div>
+
+        <div class="fair-card">
+          <div class="fair-icon">
+            <img src="assets/p11_Image28.jpg" alt="Distribution icon: network of people">
+          </div>
+          <div class="fair-text">
+            <h3>Distribution</h3>
+            <p>Hubs are identified neighborhood by neighborhood. Each community nominates its own trusted places — no single central solution imposed on all.</p>
+            <span class="fair-sub">Neighborhood-nominated, not top-down assigned</span>
+          </div>
+        </div>
+
+        <div class="fair-card">
+          <div class="fair-icon">
+            <img src="assets/p11_Image29.jpg" alt="Accountability icon: handshake with shield">
+          </div>
+          <div class="fair-text">
+            <h3>Accountability</h3>
+            <p>Hubs are vetted, trained, and connected to city systems, with incentives and periodic check-ins — preventing purely informal or unregulated networks from forming.</p>
+            <span class="fair-sub">City-integrated, not left to informal coordination alone</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- REFLECTION ──────────────────────────────────────────────── -->
+  <section id="reflection">
+    <div class="section-inner">
+      <div class="reflection-layout">
+
+        <div class="reflection-left reveal">
+          <div class="section-label">11 Reflection</div>
+          <h2>What we learned. What comes next.</h2>
+          <p>SafetyNet began with a simple observation: during a crisis, New Yorkers don't turn to apps — they turn to people. Our design didn't invent new behavior. It gave existing behavior a structure it deserved.</p>
+        </div>
+
+        <div class="reflection-right reveal">
+
+          <div class="reflection-item">
+            <div class="num">1</div>
+            <div>
+              <h4>Formalize existing behavior</h4>
+              <p>The most durable systems are those that work with human instinct, not against it. The bodega was already a safety hub — we just made it visible.</p>
+            </div>
+          </div>
+
+          <div class="reflection-item">
+            <div class="num">2</div>
+            <div>
+              <h4>Design for the edges of connectivity</h4>
+              <p>Offline-first thinking forced us to prioritize physical touchpoints. The storefront sign became as important as the app — and more resilient in a real emergency.</p>
+            </div>
+          </div>
+
+          <div class="reflection-item">
+            <div class="num">3</div>
+            <div>
+              <h4>Trust is hyperlocal</h4>
+              <p>A national emergency platform can't replicate the trust built between Kareem and his regulars. Scalability here means replicating the structure, not the relationships.</p>
+            </div>
+          </div>
+
+          <div class="reflection-item">
+            <div class="num">4</div>
+            <div>
+              <h4>Next: pilot &amp; validate</h4>
+              <p>A pilot in one NYC neighborhood — recruiting hubs, testing signage, running a tabletop emergency drill — would validate the model before city-scale rollout.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CLOSING QUOTE ───────────────────────────────────────────── -->
+  <section id="closing">
+    <div class="section-label reveal">SafetyNet · New York City</div>
+    <h2 class="closing-quote reveal">
+      We formalize what already exists: <em>everyday trust.</em>
+    </h2>
+    <p class="closing-team">Human-Centered Design · Columbia GSAPP · Team 14</p>
+  </section>
+
+
+  <!-- FOOTER ──────────────────────────────────────────────────── -->
+  <footer>
+    <p>SafetyNet NYC — Portfolio Case Study</p>
+    <p>Columbia GSAPP · Human-Centered Design · 2025</p>
+  </footer>
+
+
+  <!-- JS ───────────────────────────────────────────────────────── -->
+  <script>
+    // Mobile nav toggle
+    function toggleNav() {
+      document.getElementById('nav-links').classList.toggle('open');
+    }
+    function closeNav() {
+      document.getElementById('nav-links').classList.remove('open');
+    }
+
+    // Scroll-reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Stagger children of reveal grids
+    document.querySelectorAll('.steps-row, .users-grid, .works-grid, .proto-grid, .fairness-grid').forEach(grid => {
+      const children = grid.children;
+      Array.from(children).forEach((child, i) => {
+        child.style.transitionDelay = `${i * 0.1}s`;
+      });
+    });
+
+    // Nav background on scroll
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.style.borderBottomColor = window.scrollY > 20
+        ? 'rgba(110, 125, 78, 0.25)'
+        : 'rgba(110, 125, 78, 0.18)';
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
