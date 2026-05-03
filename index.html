@@ -133,7 +133,7 @@
     }
 
     .hero-title {
-      font-size: clamp(5rem, 14vw, 11rem);
+      font-size: clamp(3rem, 7vw, 5.5rem);
       line-height: 0.92;
       font-weight: 700;
       letter-spacing: -0.03em;
@@ -520,11 +520,11 @@
       margin-bottom: 0.1rem;
     }
 
-    /* ─── Ecosystem (dark) ──────────────────────────────────── */
-    #ecosystem { background: var(--ink); }
+    /* ─── Ecosystem ────────────────────────────────────────── */
+    #ecosystem { background: #fff; }
 
-    #ecosystem .section-label { color: var(--olive-light); }
-    #ecosystem h2 { color: var(--cream); margin-bottom: 3.5rem; }
+    #ecosystem .section-label { color: var(--olive); }
+    #ecosystem h2 { color: var(--ink); margin-bottom: 3.5rem; }
 
     .ecosystem-cols {
       display: grid;
@@ -534,10 +534,10 @@
 
     .eco-col {
       padding: 3rem 2.5rem;
-      background: rgba(255,255,255,0.03);
+      background: var(--cream);
     }
 
-    .eco-col.after { background: rgba(110, 125, 78, 0.12); }
+    .eco-col.after { background: rgba(110, 125, 78, 0.07); }
 
     .eco-label {
       font-size: 0.68rem;
@@ -547,12 +547,12 @@
       margin-bottom: 0.8rem;
     }
 
-    .eco-col:not(.after) .eco-label { color: var(--rust-light); }
-    .eco-col.after .eco-label       { color: var(--olive-light); }
+    .eco-col:not(.after) .eco-label { color: var(--rust); }
+    .eco-col.after .eco-label       { color: var(--olive); }
 
     .eco-col h3 {
       font-size: 1.4rem;
-      color: var(--cream);
+      color: var(--ink);
       margin-bottom: 1.5rem;
     }
 
@@ -572,7 +572,7 @@
 
     .eco-col li {
       font-size: 0.88rem;
-      color: rgba(244, 237, 216, 0.5);
+      color: var(--ink-light);
       line-height: 1.5;
       padding-left: 1rem;
       position: relative;
@@ -582,13 +582,13 @@
       content: '·';
       position: absolute;
       left: 0;
-      color: var(--rust-light);
+      color: var(--rust);
       font-size: 1.1rem;
       line-height: 1.2;
     }
 
-    .eco-col.after li { color: rgba(244, 237, 216, 0.72); }
-    .eco-col.after li::before { color: var(--olive-light); }
+    .eco-col.after li { color: var(--ink); }
+    .eco-col.after li::before { color: var(--olive); }
 
     /* ─── Competitor ────────────────────────────────────────── */
     #competitor { background: var(--cream-mid); }
@@ -947,7 +947,7 @@
     <h1 class="hero-title">SafetyNet</h1>
 
     <p class="hero-tagline">
-      Formalizing New York City's existing disaster communication network — the bodega, the halal cart, the doorman.
+      Formalizing New York City's existing disaster communication network: the bodega, the halal cart, the doorman.
     </p>
 
     <div class="hero-meta">
@@ -1198,7 +1198,7 @@
         <div class="eco-col">
           <div class="eco-label">Before</div>
           <h3>Fragmented, invisible system</h3>
-          <img src="assets/p9_Image11.jpg" alt="Before SafetyNet: fragmented and scattered informal network">
+          <img src="images/81.png" alt="Before SafetyNet: fragmented and scattered informal network">
           <ul>
             <li>Informal trust networks exist but are unstructured and invisible</li>
             <li>Newcomers don't know who to turn to or where to go</li>
@@ -1211,7 +1211,7 @@
         <div class="eco-col after">
           <div class="eco-label">After</div>
           <h3>Connected, distributed network</h3>
-          <img src="assets/p9_Image23.jpg" alt="After SafetyNet: connected and verified hub network">
+          <img src="images/82.png" alt="After SafetyNet: connected and verified hub network">
           <ul>
             <li>Vetted hubs are visible on the map and in person through storefront signage</li>
             <li>Newcomers can find trusted help within 0.2 miles</li>
@@ -1467,7 +1467,7 @@
   <!-- FOOTER ───────────────────────────────────────────────────── -->
   <footer>
     <p>SafetyNet NYC</p>
-    <p>Columbia GSAPP · Human-Centered Design · 2025</p>
+    <p>Columbia GSAPP · Human-Centered Design and Innovation · 2026 Spring</p>
   </footer>
 
 
